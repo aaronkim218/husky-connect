@@ -1,5 +1,5 @@
 .question-container {
-  display: 'flex'; 
+  display: 'flex';
   flex-direction: 'row';
   gap: '16px';
 }
