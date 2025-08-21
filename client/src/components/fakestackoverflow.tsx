@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, Spin } from 'antd';
 import Layout from './layout';
 import { FakeSOSocket, User } from '../types';
 import LoginContext from '../contexts/LoginContext';
@@ -90,7 +90,31 @@ const FakeStackOverflow = ({ socket }: { socket: FakeSOSocket | null }) => {
         </PreLoginContext.Provider>
       </LoginContext.Provider>
     </ConfigProvider>
-  ) : null;
+  ) : (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        width: '100vw',
+      }}>
+      <Spin
+        style={{ scale: '200%' }}
+        size='large'
+        tip={
+          <div>
+            Loading...
+            <br />
+            <span style={{ fontSize: '0.4rem' }}>
+              (this could take a minute due to cold server start)
+            </span>
+          </div>
+        }>
+        <div style={{ opacity: '0' }}>invisibleplaceholder</div>
+      </Spin>
+    </div>
+  );
 };
 
 export default FakeStackOverflow;

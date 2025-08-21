@@ -60,7 +60,9 @@
 .create-convo-button-icon:hover {
   color: #84d384;
   transform: scale(1.1);
-  transition: color 0.3s, transform 0.3s;
+  transition:
+    color 0.3s,
+    transform 0.3s;
 }
 
 .ant-typography-danger {

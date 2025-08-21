@@ -6,19 +6,19 @@
 }
 
 .info-container {
-  flex: 1; 
-  max-width: 300px; 
+  flex: 1;
+  max-width: 300px;
   padding: 20px;
 }
 
 .info-alert {
   background-color: #f0f9ff;
-  border-color: #91d5ff; 
-  font-size: 14px; 
+  border-color: #91d5ff;
+  font-size: 14px;
 }
 
 .info-alert ul {
-  padding-left: 20px; 
+  padding-left: 20px;
 }
 
 .form-container {
@@ -58,11 +58,13 @@
   font-weight: bold;
 }
 
-.ant-input, .ant-input-textarea {
+.ant-input,
+.ant-input-textarea {
   font-size: 14px;
 }
 
-.ant-input::placeholder, .ant-input-textarea::placeholder {
+.ant-input::placeholder,
+.ant-input-textarea::placeholder {
   font-style: italic;
   color: #aaa;
 }
