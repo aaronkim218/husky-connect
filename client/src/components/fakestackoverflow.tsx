@@ -60,7 +60,7 @@ const FakeStackOverflow = ({ socket }: { socket: FakeSOSocket | null }) => {
     }
   }, [navigate, loading]);
 
-  return loading ? (
+  return !loading ? (
     <ConfigProvider>
       <LoginContext.Provider value={{ setUser }}>
         <PreLoginContext.Provider value={{ user: preLoginUser, setUser: setPreLoginUser }}>
