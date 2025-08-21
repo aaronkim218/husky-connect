@@ -60,7 +60,7 @@ const FakeStackOverflow = ({ socket }: { socket: FakeSOSocket | null }) => {
     }
   }, [navigate, loading]);
 
-  return !loading ? (
+  return loading ? (
     <ConfigProvider>
       <LoginContext.Provider value={{ setUser }}>
         <PreLoginContext.Provider value={{ user: preLoginUser, setUser: setPreLoginUser }}>
@@ -100,14 +100,14 @@ const FakeStackOverflow = ({ socket }: { socket: FakeSOSocket | null }) => {
         width: '100vw',
       }}>
       <Spin
-        style={{ scale: '200%' }}
+        style={{ scale: '300%' }}
         size='large'
         tip={
           <div>
             Loading...
             <br />
-            <span style={{ fontSize: '0.4rem' }}>
-              (this could take a minute due to cold server start)
+            <span style={{ fontSize: '0.35rem' }}>
+              (this could take a few minutes due to cold server start)
             </span>
           </div>
         }>
