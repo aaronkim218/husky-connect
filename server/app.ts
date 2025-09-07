@@ -39,14 +39,12 @@ const MONGO_URL = `${process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017'}/fak
 const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:3000';
 const port = parseInt(process.env.PORT || '8000');
 
-mongoose
-  .connect(MONGO_URL)
-  .catch(err => console.log('MongoDB connection error: ', err));
+mongoose.connect(MONGO_URL).catch(err => console.log('MongoDB connection error: ', err));
 
 const app = express();
 const server = http.createServer(app);
 const socket: FakeSOSocket = new Server(server, {
-  cors: { 
+  cors: {
     origin: CLIENT_URL,
     credentials: true,
   },
@@ -111,6 +109,16 @@ app.use(
   }),
 );
 
+app.get('/healthcheck', async (req: Request, res: Response) => {
+  try {
+    await mongoose.connection.db?.admin().ping();
+    res.sendStatus(200);
+  } catch (error) {
+    console.error('failed to ping database:', error);
+    res.status(500).send('failed to ping database');
+  }
+});
+
 app.use(express.json());
 app.use(sessionMiddleware);
 
@@ -129,7 +137,7 @@ app.use((req: Request, res: Response, next) => {
     '/auth/verify',
     '/auth/logout',
     '/auth/resendCode',
-  ])
+  ]);
 
   if (unprotectedRoutes.has(req.path)) {
     return next();
